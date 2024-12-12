@@ -1,0 +1,121 @@
+{% extends 'admin_base.html' %}
+
+{% block content %}
+<style>
+  .form-container {
+    background-color: #f8f9fa; /* Light gray for better readability */
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 800px;
+    margin: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+  }
+
+  h1 {
+    text-align: center;
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .form-grid label {
+    font-weight: 500;
+    margin-bottom: 5px;
+  }
+
+  input, textarea, select {
+    width: 100%;
+    padding: 12px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    background-color: #fff;
+  }
+
+  textarea {
+    resize: none;
+    height: 100px;
+  }
+
+  .image-upload-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 20px;
+  }
+
+  .image-upload {
+    flex: 1 1 calc(50% - 10px);
+    max-width: calc(50% - 10px);
+    height: 150px;
+    background-color: #e9ecef; /* Neutral background for upload boxes */
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    border: 2px dashed #6c757d; /* Dashed border for clarity */
+  }
+
+  .image-upload:hover {
+    background-color: #f1f1f1; /* Highlight on hover */
+  }
+
+  .add-product-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+  }
+
+  .add-product-button:hover {
+    background-color: #0056b3;
+  }
+
+  @media (max-width: 768px) {
+    .form-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .image-upload {
+      flex: 1 1 100%;
+      max-width: 100%;
+    }
+  }
+</style>
+
+<div class="container my-5">
+  <div class="form-container">
+    <h1>Add Product</h1>
+    <form method="POST" enctype="multipart/form-data" onsubmit="return uploadCroppedImage()">
+      {% csrf_token %}
+      <fieldset>
+        <legend style="color: #333; font-size: 18px; margin-bottom: 10px; ">Product Information</legend>
+        <div class="form-grid text-dark">
+          {{ product_form.as_p }}
+        </div>
+      </fieldset>
+
+      <!-- Image Upload Section -->
+    
+
+      <button type="submit" class="add-product-button">Add Product</button>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
