@@ -35,7 +35,23 @@ SECRET_KEY = 'django-insecure-*eax6t8-*p4a=sw-kv*nd2sdno#f36_kk(^c&_n-3^o#1gs%f@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+    'skodin.site',
+    'www.skodin.site',
+    '3.110.37.118',
+    'localhost',
+    '127.0.0.1',
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://skodin.site',
+    'https://www.skodin.site',
+    'https://3.110.37.118',
+]
+
+USE_X_FORWARDED_HOST = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 
 
 # Application definition
